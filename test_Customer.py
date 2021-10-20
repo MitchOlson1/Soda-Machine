@@ -1,7 +1,9 @@
 import unittest
+from backpack import Backpack
 from customer import Customer
-from wallet import Wallet
-from coins import Coin
+from cans import Cola
+
+
 
 class get_wallet_coin(unittest.TestCase):
     """Test for customers get wallet function"""
@@ -38,29 +40,46 @@ class get_wallet_coin(unittest.TestCase):
 
 
 
-
 class add_coins_to_wallet(unittest.TestCase):
     """Test for customers add coins to wallet function"""
 
     def setUp(self):
-        pass
+        self.customer = Customer()
 
+    
+    
     def test_wallet_length(self):
         """Pass in a list of 3 coins, test that then len of the customer's wallet money list went up by 3"""
-        pass
-    
+        coins = ["Quarter", "Dime", "Nickel"]
+        self.customer.add_coins_to_wallet(coins)
+        length = len(self.customer.wallet.money)
+        self.assertEqual(length,91)
+
+
     def test_empty_list(self):
         """Pass in an empty list, test that the len of money list remained the same"""
-        pass
+        coins = []
+        self.customer.add_coins_to_wallet(coins)
+        length = len(self.customer.wallet.money)
+        self.assertEqual(length,88)
 
+    
+        
 class add_can_to_backpack(unittest.TestCase):
     """Test for customers add can to backpack function"""
 
     def setUp(self):
-        pass
+        self.customer = Customer()
+        self.backpack = Backpack()
 
     def test_add_can(self):
         """Pass in a Cola object, test that the len of the customer's backpack's purchased_case list went up by 1""" 
+        cola = Cola()
+        self.customer.add_can_to_backpack(cola)
+        length = len(self.customer.backpack.purchased_cans)
+        self.assertEqual(length,1)
+
+
 
 if __name__ == '__main__':
     unittest.main() 
