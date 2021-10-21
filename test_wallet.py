@@ -1,7 +1,7 @@
 import unittest
 from wallet import Wallet
 
-class fill_wallet(unittest.TestCase):
+class test_fill_wallet(unittest.TestCase):
     """Test wallet fill wallet function"""
 
     def setUp(self):

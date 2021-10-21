@@ -5,7 +5,7 @@ from cans import Cola
 
 
 
-class get_wallet_coin(unittest.TestCase):
+class test_get_wallet_coin(unittest.TestCase):
     """Test for customers get wallet function"""
 
     def setUp(self):
@@ -40,7 +40,7 @@ class get_wallet_coin(unittest.TestCase):
 
 
 
-class add_coins_to_wallet(unittest.TestCase):
+class test_add_coins_to_wallet(unittest.TestCase):
     """Test for customers add coins to wallet function"""
 
     def setUp(self):
@@ -65,7 +65,7 @@ class add_coins_to_wallet(unittest.TestCase):
 
     
         
-class add_can_to_backpack(unittest.TestCase):
+class test_add_can_to_backpack(unittest.TestCase):
     """Test for customers add can to backpack function"""
 
     def setUp(self):
