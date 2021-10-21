@@ -1,52 +1,93 @@
 import unittest
 from unittest.case import TestCase
 from soda_machine import SodaMachine
+import coins
 
 class fill_register(unittest.TestCase):
     """Test soda machine fill register function"""
-
     def setUp(self):
-        pass
+        self.register = SodaMachine()
 
     def test_register_list_length(self):
         """Instantiate a SodaMachine object, test that its register list has a len of 88"""
-        pass
+        length = len(self.register.register)
+        self.assertEqual(length,88)
+        
 
 class fill_inventory(unittest.TestCase):
     """Test soda machine fill inventory function"""
 
     def setUp(self):
-        pass
+        self.inventory = SodaMachine()
 
     def test_inventory_list_length(self):
         """Instantiate a SodaMachine object, test that its inventory list has a len of 30"""
-        pass
+        length = len(self.inventory.inventory)
+        self.assertEqual(length,30)
+
 
 class get_coin_from_register(unittest.TestCase):
     """Test soda machine get coin from register function"""
 
     def setUp(self):
-        pass
+        self.get_coin_from_register = SodaMachine()
 
-    def test_return_coin(self):
+    def test_return_coin_quarter(self):
         """Test each type of coin can be returned from register"""
-        pass
+        coin = self.get_coin_from_register.get_coin_from_register('Quarter')
+        self.assertEqual('Quarter',coin.name)
+
+    def test_return_coin_dime(self):
+        coin = self.get_coin_from_register.get_coin_from_register('Dime')
+        self.assertEqual('Dime',coin.name)
+
+    def test_return_coin_nickel(self):
+        coin = self.get_coin_from_register.get_coin_from_register('Nickel')
+        self.assertEqual('Nickel',coin.name)
+
+    def test_return_coin_penny(self):
+        coin = self.get_coin_from_register.get_coin_from_register('Penny')
+        self.assertEqual('Penny',coin.name)
+
 
     def test_invalid_coin(self):
         """Test that passing in a string that is not a valid coin name will return None"""
-        pass
+        coin = self.get_coin_from_register.get_coin_from_register('Dollar')
+        self.assertIsNone(None)
+        
 
 class test_register_has_coin(unittest.TestCase):
     """Test soda machine test register has coin function"""
     
     def setUp(self):
-        pass
+        self.register_has_coin = SodaMachine()
    
-    def test_each_coin(self):
+    def test_each_coin_quarter(self):
         """Test that each type of coin will return True"""
+        result = self.register_has_coin.register_has_coin('Quarter')
+        self.assertTrue(result) 
+
+    def test_each_coin_dime(self):
+        result = self.register_has_coin.register_has_coin('Dime')
+        self.assertTrue(result) 
+
+    
+    def test_each_coin_nickel(self):
+        result = self.register_has_coin.register_has_coin('Nickel')
+        self.assertTrue(result) 
+
+    def test_each_coin_penny(self):
+        result = self.register_has_coin.register_has_coin('Penny')
+        self.assertTrue(result) 
+    
+    
     
     def test_invalid_coin(self):
         """Test that a non-valid coin name will return False"""
+     
+    def test_invalid_coin(self):
+        coin = self.register_has_coin.register_has_coin('Dollar')
+        self.assertFalse(None)
 
     
     
@@ -54,7 +95,7 @@ class determine_change_value(unittest.TestCase):
     """Test soda machine determine change value function"""
     
     def setUp(self):
-        pass
+        self.
 
     def test_payment_higer(self):
         """Test with total payment higher"""
