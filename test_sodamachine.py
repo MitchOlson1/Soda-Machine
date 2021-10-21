@@ -1,9 +1,9 @@
 import unittest
-from unittest.case import TestCase
+from cans import Can, Cola
 from soda_machine import SodaMachine
 import coins
 
-class fill_register(unittest.TestCase):
+class test_fill_register(unittest.TestCase):
     """Test soda machine fill register function"""
     def setUp(self):
         self.register = SodaMachine()
@@ -14,7 +14,7 @@ class fill_register(unittest.TestCase):
         self.assertEqual(length,88)
         
 
-class fill_inventory(unittest.TestCase):
+class test_fill_inventory(unittest.TestCase):
     """Test soda machine fill inventory function"""
 
     def setUp(self):
@@ -26,7 +26,7 @@ class fill_inventory(unittest.TestCase):
         self.assertEqual(length,30)
 
 
-class get_coin_from_register(unittest.TestCase):
+class test_get_coin_from_register(unittest.TestCase):
     """Test soda machine get coin from register function"""
 
     def setUp(self):
@@ -91,62 +91,120 @@ class test_register_has_coin(unittest.TestCase):
 
     
     
-class determine_change_value(unittest.TestCase):
+class test_determine_change_value(unittest.TestCase):
     """Test soda machine determine change value function"""
     
     def setUp(self):
-        self.
+        self.determine_change_value = SodaMachine()
 
     def test_payment_higer(self):
         """Test with total payment higher"""
+        amount = self.determine_change_value.determine_change_value(5,2)
+        self.assertEquals(amount,3)
 
     def test_soda_price(self):
         """Test with select_soda_price_higher"""
+        amount = self.determine_change_value.determine_change_value(2,5)
+        self.assertEquals(amount,-3)
 
     def test_equal_values(self):
         """Test with two eqaul values"""
+        amount = self.determine_change_value.determine_change_value(2,2)
+        self.assertEquals(amount,0)
 
-class caculate_coin_value(unittest.TestCase):
+
+
+class test_caculate_coin_value(unittest.TestCase):
     """Test soda machine caculate coin value function"""
     
     def setUp(self):
-        pass
+        self.caculate_coin_value = SodaMachine()
+        
 
     def test_coin_value_check(self):
         """Instantiate each of the 4 coin types and append them to a list. Pass the list into this function, ensure the returned values is .41"""
+        
+        Quarter = coins.Quarter()
+        Dime = coins.Dime()
+        Nickel = coins.Nickel()
+        Penny = coins.Penny()
+        coinlist = [Quarter,Dime,Nickel,Penny]
+        value_of_coins = self.caculate_coin_value.calculate_coin_value(coinlist)
+        self.assertEquals(value_of_coins,.41)
 
+    
     def test_empty_list(self):
-       """ Pass in an empty list. Ensure the returned value is 0.""" 
+       """ Pass in an empty list. Ensure the returned value is 0."""
+       coinlist = []
+       value_of_coins = self.caculate_coin_value.calculate_coin_value(coinlist)
+       self.assertEquals(value_of_coins,0)
 
-class get_inventory_soda(unittest._TestCase):
+
+
+class test_get_inventory_soda(unittest.TestCase):
     """test soda machine get inventory soda functiion"""
     
     def setUp(self):
-        pass
+        self.get_inventory_soda = SodaMachine()
     
-    def test_equal_name(self):
+    def test_equal_name_cola(self):
         """Pass in each of the 3 soda names, ensure the returned can has the same name"""
+        resultCola = self.get_inventory_soda.get_inventory_soda('Cola')
+        self.assertEqual(resultCola.name,'Cola')
 
+    
+    def test_equal_name_beer(self):
+        resultRootBeer = self.get_inventory_soda.get_inventory_soda('Root Beer')
+        self.assertEqual(resultRootBeer.name,'Root Beer')
+
+        
+    def test_equal_name_orange(self):
+        resultOrangeSoda = self.get_inventory_soda.get_inventory_soda('Orange Soda')
+        self.assertEqual(resultOrangeSoda.name,'Orange Soda')
+
+
+    
     def test_mountain_dew(self):
         """Pass in Mountain Dew and ensure None is returned"""
+        result = self.get_inventory_soda.get_inventory_soda('Mountain Dew')
+        self.assertIsNone(None)
 
-class return_inventory(unittest.TestCase):
+
+
+
+
+class test_return_inventory(unittest.TestCase):
     """Test soda machine return inventory function"""
     
     def setUp(self):
-        pass
+        self.inventory = SodaMachine()
     
     def test_inventory_length(self):
         """Instantiate a can and pass it into the method. Test that the len of self.inventory is now 31"""
+        soda = Cola 
+        self.inventory.return_inventory(soda)
+        length = len(self.inventory.inventory)
+        self.assertEqual(length,31)
 
-class deposit_coins_into_register(unittest.TestCase):
+
+
+class test_deposit_coins_into_register(unittest.TestCase):
     """Test soda machine deposit coins into register function"""
     
     def setUp(self):
-        pass
+        self.register = SodaMachine()
 
-    def test_register_len(self):
+    def deposit_coins_into_register(self):
         """Instantiate each of the 4 coins and append them to a list. Pass the list into the function, ensure the len of self.register is 92"""
+        Quarter = coins.Quarter()
+        Dime = coins.Dime()
+        Nickel = coins.Nickel()
+        Penny = coins.Penny()
+        coinlist = [Quarter,Dime,Nickel,Penny]
+        self.deposit_coins_into_register(coinlist)
+        length = len(self.register.register)
+        self.assertEqual(length,92)
+
 
 if __name__ == '__main__':
     unittest.main()
